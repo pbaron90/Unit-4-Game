@@ -1,4 +1,18 @@
+body {
+  background-image: url(https://steamcdn-a.akamaihd.net/steamcommunity/public/images/items/335550/7c03690e60e5b974a150d732a4b66ddda0acde3f.jpg); 
+}
+
+p {
+  color: aliceblue;
+}
+
+h1 {
+  color: crimson;
+}
+
+
 .crystal-image {
   width: 300px;
   height: 300px;
 }
+
