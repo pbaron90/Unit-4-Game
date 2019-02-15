@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en-us">
+<head>
+  <meta charset="UTF-8">
+  <title>Crystal Game</title>
+
+  <link rel="stylesheet" type="text/css" href="assets\css\reset.css"/>
+  <link rel="stylesheet" type="text/css" href="assets\css\style.css">
+  <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script type="text/javascript" src="assets/javascript/game.js"></script>
+</head>
+<body>
+    <div id="white">
+        <img src="assets\images\gem1.png" alt="gem1" class="gems" id="gemOne">
+        <img src="assets\images\gem2.png" alt="gem2" class="gems" id="gemTwo">
+        <img src="assets\images\gem3.png" alt="gem3" class="gems" id="gemThree">
+        <img src="assets\images\gem4.png" alt="gem4" class="gems" id="gemFour"> 
+        <div class="outline">
+            <h6>Wins: </h6>
+            <h6 id="winCount"></h6>
+            <h6>Losses: </h6>
+            <h6 id="lossCount"></h6>
+        </div>
+    </div>
+    <div class ="outline2">
+        <h5>Random #:</h5>
+        <br>
+        <h5 id="randomSpace"></h5>
+        <br>
+
+        <br>
+        <br>
+        <h5>Your total score is:</h5>
+        <br>
+        <h5 id="scoreSpace"></h5>
+    </div>
+
+    <div id="bluebox">
+        <h4>Crystal Collector</h4>
+    </div>
+    <div class="instructions">
+        <h1>Instructions:</h1>
+        <br/>
+        <h2>1. You will be given a random #</h2>
+        <br/>
+        <h2>2. There are four crystals, each holding a specfic value</h2>
+        <br/>
+        <h2>3. Click on a crystal, and that value will be added to your score</h2>
+        <br>
+        <h2>Win = your total score matches the random #</h2>
+        <br/>
+        <h2>Lose = your total score goes above the random #</h2>
+        <br/>
+        <br>
+        <br>
+        <h3>Note: </h3>
+        <br>
+        <h3>-The crystal's value is hidden until you click on it.</h3>
+        <br/>
+        <h3>-Each time the game starts, the values will change.</h3>
+    </div>
+
+<!-- End of HTML -->
+
+
+
+
+
+<script>
+// Step 1: make sure nothing runs until document is ready
+$(document).ready(function() {
+
+// Step 2: define variables for score, wins, losses, and random number
+    var userTotal= 0;
+    var wins = 0;
+    var losses = 0;
+    var randomNumber = Math.floor(Math.random()*101)+19;
+    var cry1;
+    var cry2;
+    var cry3;
+    var cry4;
+
+// Step 2a: display wins and losses and total score
+    $('#winCount').text(wins);
+    $('#lossCount').text(losses);
+    $('#scoreSpace').text(userTotal);
+
+// Step 2b: display random number
+    $('#randomSpace').text(randomNumber);
+
+// Step 2c: function for game reset
+  function reset(){
+      randomNumber=Math.floor(Math.random()*101)+19;
+      $('#randomSpace').text(randomNumber);
+      cry1= Math.floor(Math.random()*11+1);
+      cry2= Math.floor(Math.random()*11+1);
+      cry3= Math.floor(Math.random()*11+1);
+      cry4= Math.floor(Math.random()*11+1);
+      userTotal= 0;
+      $('#scoreSpace').text(userTotal);
+      } 
+// Step 2d: function for displaying wins and losses
+    function winning(){
+    wins++; 
+    $('#winCount').text(wins);
+    reset();
+    }
+
+    function losing(){
+    losses++;
+    $('#lossCount').text(losses);
+    reset()
+     }
+
+// Step 3: Assign numbers for each crystal, between 1-12
+  var cry1= Math.floor(Math.random()*11)+1
+  console.log(cry1);
+  var cry2= Math.floor(Math.random()*11)+1
+  console.log(cry2);
+  var cry3= Math.floor(Math.random()*11)+1
+  console.log(cry3);
+  var cry4= Math.floor(Math.random()*11)+1
+  console.log(cry4);
+
+// Step 4: as user clicks the crystals, add up the total. If total = randomNumber, win and reset. if over, loss, and reset
+    $('#gemOne').on('click', function() {
+    userTotal += cry1;
+    console.log("New total= " + userTotal);
+    $('#scoreSpace').text(userTotal); 
+    if (userTotal > randomNumber) {
+            losses++;
+            $('#lossCount').text(losses);
+            alert("You lost, try again");
+            console.log("you lost");
+            reset();
+        }
+    if (userTotal == randomNumber) {
+            wins++;
+            $('#winCount').text(wins);
+            console.log("you won");
+            alert("You won! Congratulations!");
+            reset();
+        }
+   });
+
+   $('#gemTwo').on('click', function(){
+    userTotal += cry2;
+    console.log("New total= " + userTotal);
+    $('#scoreSpace').text(userTotal); 
+    if (userTotal > randomNumber) {
+            losses++;
+            $('#lossCount').text(losses);
+            console.log("you lost");
+            alert("You lost, try again");
+            reset();
+        }
+    if (userTotal == randomNumber) {
+            wins++;
+            $('#winCount').text(wins);
+            console.log("you won");
+            alert("You won! Congratulations!");
+            reset();
+        }
+   });
+
+    $('#gemThree').on('click', function() {
+    userTotal += cry3;
+    console.log("New total= " + userTotal);
+    $('#scoreSpace').text(userTotal); 
+    if (userTotal > randomNumber) {
+            losses++;
+            $('#lossCount').text(losses);
+            console.log("you lost");
+            alert("You lost, try again");
+            reset();
+        }
+    if (userTotal == randomNumber) {
+            wins++;
+            $('#winCount').text(wins);
+            console.log("you won");
+            alert("You won! Congratulations!");
+            reset();
+        }
+   });
+
+   $('#gemFour').on('click', function(){
+    userTotal += cry4;
+    console.log("New total= " + userTotal);
+    $('#scoreSpace').text(userTotal); 
+    if (userTotal > randomNumber) {
+            losses++;
+            $('#lossCount').text(losses);
+            console.log("you lost");
+            alert("You lost, try again");
+            reset();
+        }
+    if (userTotal == randomNumber) {
+            wins++;
+            $('#winCount').text(wins);
+            console.log("you won");
+            alert("You won! Congratulations!");
+            reset();
+        }
+   });
+
+});
+
+
+
+
+</script>
+
+</body>
+<div class="footer">
+</div>
+</html>
+
+
+
