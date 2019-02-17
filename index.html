@@ -25,7 +25,7 @@
 
 
     <div id="row">
-      <div id="col-lg-3">
+      <div class="col col-lg-2">
         <p id="rules-text">you will be given a random number at the start of the game.
           <br><br>
           There are four crystals below. By clicking on a crystal you will add a specific amount of points to your total
@@ -42,20 +42,22 @@
       </div>
     </div>
 
-    <!-- div start for wins/loss/target number in body -->
-    <div id="div">
+    <!-- container start for wins/loss/target number in body -->
+    <div id="container">
       <p id="winner">You win!</p>
       <p id="loser">You Lose!</p>
       <p id="win-text">Wins: 0 </p>
       <p id="losses-text">Losses: 0 </p>
-      <p id="target-number-text"></span>Your Goal: </span></p>
+      <div class="col-3">
+        <p id="target-number-text"></span>Your Goal: </span></p>
+      </div>
     </div>
 
     <div id="crystals"></div>
 
-    <p id="total-score-text"><span class="badge badge-secondary"></span>Your Total Score is: 0
-    </p>
-
+    <div class="col-3">
+    <p id="total-score-text"><span class="badge badge-secondary"></span>Your Total Score is: 0</p>
+    </div>
 
 
 
@@ -73,15 +75,15 @@
       var crystals
       var targetNumber;
       var counter = Math.floor(Math.random() * 12) + 1;
-      
+
       var targetNumber = Math.floor(Math.random() * 120) + 19;
       console.log(targetNumber);
 
       $("#winner").hide();
       $("#loser").hide();
 
-      
-            // reset function
+
+      // reset function
       function reset() {
         targetNumber = Math.floor(Math.random() * 120) + 19;
         $("#target-number-text").text("Your Goal: " + targetNumber);
@@ -89,10 +91,11 @@
         userTotal = 0;
         $("#winner").hide();
         $("#loser").hide();
-        counter = 0;
+        counter = 0
       }
 
-      $("#target-number-text").text("Your Goal: " + targetNumber);
+      $("#target-number-text").text("Your Goal: " + targetNumber).css({ "font-size": "200%" });
+      $("#total-score-text").text("Your Total Score is: " + counter).css({ "font-size": "200%" });
 
 
       // We begin by expanding our array to include four options.
@@ -109,7 +112,7 @@
         imageCrystal.addClass("crystal-image");
 
         // Each imageCrystal will be given a src link to the crystal image
-        imageCrystal.attr("src", "http://cdn.playbuzz.com/cdn/35910209-2844-45c0-b099-f4d82878d54f/00261fda-4062-4096-81fd-8cf96b9034e8.jpg");
+        imageCrystal.attr("src", "https://cdn0.iconfinder.com/data/icons/casino-icons-set-cartoon-style/512/a1271-512.png");
 
         // Each imageCrystal will be given a data attribute called data-crystalValue.
         // This data attribute will be set equal to the array value.
@@ -135,7 +138,7 @@
         counter += crystalValue;
 
         // All of the same game win-lose logic applies. So the rest remains unchanged.
-        $("#total-score-text").text("Your Total Score is: " + counter);
+        $("#total-score-text").text("Your Total Score is: " + counter).css({ "font-size": "200%" });
 
 
         if (counter === targetNumber) {
