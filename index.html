@@ -44,6 +44,8 @@
 
     <!-- div start for wins/loss/target number in body -->
     <div id="div">
+      <p id="winner">You win!</p>
+      <p id="loser">You Lose!</p>
       <p id="win-text">Wins: 0 </p>
       <p id="losses-text">Losses: 0 </p>
       <p id="target-number-text"></span>Your Goal: </span></p>
@@ -71,9 +73,12 @@
       var crystals
       var targetNumber;
       var counter = Math.floor(Math.random() * 12) + 1;
-
+      
       var targetNumber = Math.floor(Math.random() * 120) + 19;
       console.log(targetNumber);
+
+      $("#winner").hide();
+      $("#loser").hide();
 
       
             // reset function
@@ -82,6 +87,9 @@
         $("#target-number-text").text("Your Goal: " + targetNumber);
         imageCrystal = Math.floor(Math.random() * 11 + 1);
         userTotal = 0;
+        $("#winner").hide();
+        $("#loser").hide();
+        counter = 0;
       }
 
       $("#target-number-text").text("Your Goal: " + targetNumber);
@@ -132,14 +140,14 @@
 
         if (counter === targetNumber) {
           $("#win-text").text("wins: " + wins++);
-          alert("Congrats, You WIN!");
+          $("#winner").show();
           reset()
         }
 
         else if (counter >= targetNumber) {
           $("#losses-text").text("Losses: " + losses++);
           $("#total-score-text").text("Your Total score is: ") + 0;
-          alert("Congrats, You LOSE!");
+          $("#loser").show();
           reset();
         }
 
